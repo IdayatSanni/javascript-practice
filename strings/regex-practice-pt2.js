@@ -13,16 +13,23 @@ console.log("🔍 Regex Practice Starting...\n");
 // 🟢 EASY LEVEL
 //
 
-// 1. Extract all words from a sentence
-function extractWords() {
-  const sentence = "The quick brown fox jumps over the lazy dog.";
-  // TODO: Use regex to extract all words
-}
+// // 1. Extract all words from a sentence
+// function extractWords() {
+//   const sentence = "The quick brown fox jumps over the lazy dog.";
+//   // TODO: Use regex to extract all words
+//   const regex = /(\w*)\s/gi;
+//   const extract = sentence.match(regex);
+//   console.log(extract);
+// }
 
 // 2. Extract all digits from a string
 function extractDigits() {
   const input = "Order #1234, Tracking ID: 987654";
+
   // TODO: Get all digit sequences like ['1234', '987654']
+  const regex = /(\d+)/g;
+  const extractNumbers = input.matchAll(regex);
+  console.log([...extractNumbers]);
 }
 
 // 3. Replace all spaces with dashes (slugify)
@@ -122,7 +129,8 @@ function validateEmail(email) {
 
 // 17. Extract all URLs from a block of HTML
 function extractURLs() {
-  const html = '<a href="https://site.com">Link</a> <a href="https://test.com">Test</a>';
+  const html =
+    '<a href="https://site.com">Link</a> <a href="https://test.com">Test</a>';
   // TODO: Match all href values
 }
 
@@ -171,8 +179,8 @@ function compareMatchVsMatchAll() {
 
 //
 // ✅ Run this to test each one manually:
-extractWords();
-// extractDigits();
+// extractWords();
+extractDigits();
 // extractEmailParts();
 // extractPhoneNumbers();
 // ...
