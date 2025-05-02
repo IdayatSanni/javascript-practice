@@ -23,33 +23,45 @@ console.log("🔍 Regex Practice Starting...\n");
 // }
 
 // 2. Extract all digits from a string
-function extractDigits() {
-  const input = "Order #1234, Tracking ID: 987654";
+// function extractDigits() {
+//   const input = "Order #1234, Tracking ID: 987654";
 
-  // TODO: Get all digit sequences like ['1234', '987654']
-  const regex = /(\d+)/g;
-  const extractNumbers = input.matchAll(regex);
-  console.log([...extractNumbers]);
-}
+//   // TODO: Get all digit sequences like ['1234', '987654']
+//   const regex = /(\d+)/g;
+//   const extractNumbers = input.matchAll(regex);
+//   console.log([...extractNumbers]);
+// }
 
 // 3. Replace all spaces with dashes (slugify)
 function slugify() {
   const title = "Learn Regex in JavaScript";
   // TODO: Output: "learn-regex-in-javascript"
+  const regex = /\s/g;
+  const replaceSpace = title.replaceAll(regex, "-");
+  console.log(replaceSpace);
 }
+// slugify();
 
 // 4. Check if a string contains the word "error" (case-insensitive)
 function containsError() {
   const log = "System threw an ERROR at line 32";
   // TODO: Use test() or search()
+  const regex = /error/gi;
+  const checkForErrors = regex.test(log);
+  console.log(checkForErrors);
 }
+// containsError();
 
 // 5. Match all hashtags in a tweet
 function findHashtags() {
   const tweet = "New launch today! #product #excited #JavaScript";
   // TODO: Use match() or matchAll()
+  const regex = /(#\w*)/gi;
+  const findTheHashtags = tweet.match(regex);
+  console.log(findTheHashtags);
 }
 
+// findHashtags();
 //
 // 🟡 INTERMEDIATE LEVEL
 //
@@ -58,13 +70,22 @@ function findHashtags() {
 function extractEmailParts() {
   const input = "Contact me at alice@example.com and bob@company.org";
   // TODO: Use matchAll() with named groups
+  const regex = /(?<username>\w+)@(?<domain>\w+\.\w+)/gi;
+  const getUserAndDomanin = input.matchAll(regex);
+  console.log([...getUserAndDomanin]);
 }
 
+// extractEmailParts();
 // 7. Match and extract all valid US phone numbers
-function extractPhoneNumbers() {
-  const contacts = "Call (555) 123-4567 or (212) 987-6543";
-  // TODO: Capture area code and number
-}
+// function extractPhoneNumbers() {
+//   const contacts = "Call (555) 123-4567 or (212) 987-6543";
+//   // TODO: Capture area code and number
+//   const regex = /\((\d{3})\)\s(\d{3}-\d{4})/g;
+//   const extractArea = contacts.match(regex);
+//   console.log(extractArea);
+// }
+
+// extractPhoneNumbers();
 
 // 8. Convert snake_case to camelCase
 function convertToCamelCase() {
@@ -180,7 +201,7 @@ function compareMatchVsMatchAll() {
 //
 // ✅ Run this to test each one manually:
 // extractWords();
-extractDigits();
+
 // extractEmailParts();
 // extractPhoneNumbers();
 // ...
