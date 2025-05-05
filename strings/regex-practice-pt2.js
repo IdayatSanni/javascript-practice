@@ -77,34 +77,53 @@ function extractEmailParts() {
 
 // extractEmailParts();
 // 7. Match and extract all valid US phone numbers
-// function extractPhoneNumbers() {
-//   const contacts = "Call (555) 123-4567 or (212) 987-6543";
-//   // TODO: Capture area code and number
-//   const regex = /\((\d{3})\)\s(\d{3}-\d{4})/g;
-//   const extractArea = contacts.match(regex);
-//   console.log(extractArea);
-// }
+function extractPhoneNumbers() {
+  const contacts = "Call (555) 123-4567 or (212) 987-6543";
+  // TODO: Capture area code and number
+  regex = /(\(\d+\))/g;
+  const extractArea = contacts.match(regex);
+  console.log(extractArea);
+}
 
 // extractPhoneNumbers();
 
 // 8. Convert snake_case to camelCase
 function convertToCamelCase() {
   const input = "this_is_a_test_string";
+  const regex = /(\w*-)/gi;
   // TODO: Use replace() with a function
+  const convertToCamel = input.replace(regex, (words) => words.toUpperCase);
+  console.log(convertToCamel);
 }
+
+// convertToCamelCase();
 
 // 9. Validate a simple password (min 6 chars, at least 1 number)
 function validatePassword() {
   const password = "abc123";
+  const regex = /^(?=.*\d).{6,}$/;
+  // ^ and $ ensure the pattern applies to the entire string.
+
+  //(?=.*\d) is a positive lookahead that ensures at least one digit exists.
+
+  //.{6,} ensures at least 6 characters in total.
+  console.log(regex);
+  const matchPassword = password.match(regex);
+
   // TODO: Return true/false
+  console.log(matchPassword);
 }
+// validatePassword();
 
 // 10. Replace only the first instance of "lorem" in a string
 function replaceFirstLorem() {
   const paragraph = "lorem ipsum dolor lorem ipsum";
   // TODO: Use regex to replace only the first one
+  const regex = /lorem/i;
+  const replaceLorem = paragraph.replace(regex, (e) => (e = "Idayat"));
+  console.log(replaceLorem);
 }
-
+// replaceFirstLorem();
 //
 // 🔴 ADVANCED LEVEL
 //
@@ -113,14 +132,34 @@ function replaceFirstLorem() {
 function extractDateTime() {
   const log = "2025-04-19 14:32:12 — user logged in";
   // TODO: Capture date and time separately
-}
+  const regex = /(\d{4}-\d{2}-\d{2})\s(\d{2}:\d{2}:\d{2})/g;
+  // deconstruct the object
+  const matches = [...log.matchAll(regex)];
 
+  for (const match of matches) {
+    // spread the object
+    const [full, date, time] = match;
+    console.log("Date:", date);
+    console.log("Time:", time);
+  }
+}
+// extractDateTime();
 // 12. Match all quoted strings ('...' or "...")
 function matchQuotedStrings() {
   const input = `He said, "hello", then 'bye'.`;
+  const regex = /(["'])(.*?)\1/g;
+  //(["']) → Capture either a single or double quote. This is group 1.
+
+  //(.*?) → Lazily match anything inside the quotes (as little as needed).
+
+  //1 → Match the same quote used at the start (either ' or "). This ensures the opening and closing quote are the same.
+
+  ///g → Global, to find all matches in the string.
+  const matchIt = input.match(regex);
+  console.log(matchIt);
   // TODO: Match both types of quotes
 }
-
+// matchQuotedStrings();
 // 13. Match only words ending in "ing"
 function matchIngWords() {
   const text = "playing swimming sitting went gone";
